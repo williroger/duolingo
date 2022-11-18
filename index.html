@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+
+        <div id="div">
+
+        </div>
+
+         <script>
+
+
+
+                function Sete(yourUrl,id){
+                    let resp;
+                    let request = new XMLHttpRequest();
+                    request.open('GET', yourUrl, true);
+
+                    request.onload = function() {
+                    if (request.readyState == 4 && (request.status >= 200 && request.status < 400)) {
+                        // Success!
+                        resp = request.responseText;
+
+
+                        document.getElementById(id).innerText=resp;
+
+                    } else {
+
+
+                    }
+                    };
+
+                    request.onerror = function() {
+                    // There was a connection error of some sort
+                        console.log("Erro:"+request);
+                    };
+
+                    request.send();
+                }
+
+               Sete("https://pokeapi.co/api/v2/pokemon-species/132/","div");
+
+
+
+            </script>
+</body>
+</html>
