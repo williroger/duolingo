@@ -4,22 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Duolingo Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+<!-- componetes base no tailwindcss.com -->
+<div class="flex h-screen items-center justify-center bg-gradient-to-r from-lime-400 to-lime-500 px-4">
+    <!-- cores para o background in tailwindcomponents.com/gradient-generator/ -->
+    <div class="max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
+      <img src="https://img.unocero.com/2021/12/duo-08523a2.jpg" alt="plant" class="h-auto w-full" />
+      <div class="p-5">
+        <!-- cores aqui tailwindcss.com/docs/customizing-colors -->
+        <img src="./images/fireStreak.svg" alt="" width="50px" style="margin-left: auto;margin-right: auto;">
+        <p class="text-5xl font-extrabold text-center text-gray-700" id="idStreak">streak</p>
+        <p class="text-5 font-extrabold text-center mb-5 text-gray-700">dias de ofensiva</p>
+        <a href="https://www.duolingo.com/profile/filososilva">        
+            <button class="w-full rounded-md bg-amber-500  py-2 text-amber-100 hover:bg-amber-400 hover:shadow-md duration-75 font-bold" id="userName">Seguir usuário</button>
+        </a>
 
+      </div>
+    </div>
+  </div>
+  <span class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
 
-
-
-        <div id="div">
-
-        </div>
-
-         <script>
-
-
-
-                function Sete(yourUrl,id){
+<script>
+                function Sete(yourUrl,id,name){
                     let resp;
                     let request = new XMLHttpRequest();
                     request.open('GET', yourUrl, true);
@@ -29,8 +38,14 @@
                         // Success!
                         resp = request.responseText;
 
+                        jsonResponse = JSON.parse(resp)
+                        
+                        var userName = jsonResponse["username"]
+                        var streak = jsonResponse["streak"]
 
-                        document.getElementById(id).innerText=resp;
+
+                        document.getElementById(id).innerText=streak;
+                        document.getElementById(name).innerText=`Seguir @${userName}!`;
 
                     } else {
 
@@ -46,10 +61,7 @@
                     request.send();
                 }
 
-               Sete("https://www.duolingo.com/2017-06-30/users/244988878","div");
-
-
-
-            </script>
+               Sete("https://www.duolingo.com/2017-06-30/users/11578381","idStreak","userName");
+</script>
 </body>
 </html>
